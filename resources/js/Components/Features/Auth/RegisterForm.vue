@@ -17,6 +17,15 @@ const { form, submit } = useRegisterForm();
 
 <template>
     <form @submit.prevent="submit">
+        <!-- back to home link -->
+        <div class="flex items-center justify-end mt-4">
+            <Link :href="'/'"
+                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+            Back to home
+            </Link>
+        </div>
+        <!-- end back to home link -->
+         
         <!-- input name -->
         <div>
             <InputLabel for="name" value="Name" />

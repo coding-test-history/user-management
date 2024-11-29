@@ -1,4 +1,6 @@
 <script setup>
+import { Link } from '@inertiajs/vue3';
+
 // form components
 import InputError from '@/Components/Form/InputError.vue';
 import InputLabel from '@/Components/Form/InputLabel.vue';
@@ -25,7 +27,14 @@ const { form, submit } = useForgotPassword();
 
         <!-- button email password reset -->
         <div class="flex items-center justify-end mt-4">
-            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            <!-- back to login link -->
+            <Link :href="route('login')"
+                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+            Back to login
+            </Link>
+            <!-- end back to login link -->
+
+            <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Email Password Reset Link
             </PrimaryButton>
         </div>
