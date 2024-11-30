@@ -20,6 +20,7 @@ defineExpose({
 </script>
 
 <template>
+    <!-- input current password -->
     <div class="col-span-6 sm:col-span-4">
         <InputLabel for="current_password" value="Current Password" />
         <TextInput
@@ -32,7 +33,9 @@ defineExpose({
         />
         <InputError :message="form.errors.current_password" class="mt-2" />
     </div>
+    <!-- end input current password -->
 
+    <!-- input password -->
     <div class="col-span-6 sm:col-span-4">
         <InputLabel for="password" value="New Password" />
         <TextInput
@@ -45,7 +48,9 @@ defineExpose({
         />
         <InputError :message="form.errors.password" class="mt-2" />
     </div>
+    <!-- end input password -->
 
+    <!-- input password confirmation -->
     <div class="col-span-6 sm:col-span-4">
         <InputLabel for="password_confirmation" value="Confirm Password" />
         <TextInput
@@ -57,4 +62,5 @@ defineExpose({
         />
         <InputError :message="form.errors.password_confirmation" class="mt-2" />
     </div>
+    <!-- end input password confirmation -->
 </template>

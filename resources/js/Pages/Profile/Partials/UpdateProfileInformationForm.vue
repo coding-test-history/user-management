@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from 'vue';
+
 // message components
 import ActionMessage from '@/Components/Messages/ActionMessage.vue';
 
@@ -16,32 +18,36 @@ import UpdateProfileInformationForm from '@/Components/Features/Profile/UpdatePr
 
 const props = defineProps({
     user: Object,
-    form: Object,
+    // form: Object
 });
 
-const {
-    updateProfileInformation,
-    sendEmailVerification,
-    updatePhotoPreview,
-    selectNewPhoto,
-    deletePhot,
-    form } = useUpdateProfileInformationForm(props);
+const photoPreview = ref(null);
+const photoInput = ref(null);
+
+const { updateProfileInformation, form } = useUpdateProfileInformationForm(props, photoInput, photoPreview);
 </script>
 
 <template>
     <FormSection @submitted="updateProfileInformation">
+        <!-- title -->
         <template #title>
             Profile Information
         </template>
+        <!-- end title -->
 
+        <!-- description -->
         <template #description>
             Update your account's profile information and email address.
         </template>
+        <!-- end description -->
 
+        <!-- form -->
         <template #form>
             <UpdateProfileInformationForm :form="form" :user="user" />
         </template>
+        <!-- end form -->
 
+        <!-- actions -->
         <template #actions>
             <ActionMessage :on="form.recentlySuccessful" class="me-3">
                 Saved.
@@ -51,5 +57,6 @@ const {
                 Save
             </PrimaryButton>
         </template>
+        <!-- end actions -->
     </FormSection>
 </template>

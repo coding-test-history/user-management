@@ -5,7 +5,6 @@ export default function useDeleteUserForm(form, passwordInput) {
 
     const confirmUserDeletion = () => {
         confirmingUserDeletion.value = true; // Periksa apakah ini dijalankan
-        console.log("Modal state:", confirmingUserDeletion.value);
         setTimeout(() => passwordInput.value.focus(), 250);
     };
 

@@ -14,12 +14,13 @@ defineProps({
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
-    title: String
+    title: { type: String, default: 'Welcome' }
 });
 </script>
 
 <template>
     <!-- head -->
+
     <Head :title="title" />
     <!-- end head -->
 

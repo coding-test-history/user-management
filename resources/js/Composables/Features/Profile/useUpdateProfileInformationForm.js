@@ -1,11 +1,11 @@
-import { ref } from 'vue';
-import { useForm } from "@inertiajs/vue3";
+import { ref } from "vue";
+import { useForm, router } from "@inertiajs/vue3";
 
-export default function UpdateProfileInformationForm(props) {
-    const verificationLinkSent = ref(null);
-    const photoPreview = ref(null);
-    const photoInput = ref(null);
-
+export default function UpdateProfileInformationForm(
+    props,
+    photoInput,
+    photoPreview
+) {
     const form = useForm({
         _method: "PUT",
         name: props.user.name,
@@ -13,17 +13,7 @@ export default function UpdateProfileInformationForm(props) {
         photo: null,
     });
 
-    const updateProfileInformation = () => {
-        if (photoInput.value) {
-            form.photo = photoInput.value.files[0];
-        }
-
-        form.post(route("user-profile-information.update"), {
-            errorBag: "updateProfileInformation",
-            preserveScroll: true,
-            onSuccess: () => clearPhotoFileInput(),
-        });
-    };
+    const verificationLinkSent = ref(null);
 
     const sendEmailVerification = () => {
         verificationLinkSent.value = true;
@@ -45,6 +35,18 @@ export default function UpdateProfileInformationForm(props) {
         };
 
         reader.readAsDataURL(photo);
+    };
+
+    const updateProfileInformation = () => {
+        if (photoInput.value) {
+            form.photo = photoInput.value.files[0];
+        }
+
+        form.post(route("user-profile-information.update"), {
+            errorBag: "updateProfileInformation",
+            preserveScroll: true,
+            onSuccess: () => clearPhotoFileInput(),
+        });
     };
 
     const deletePhoto = () => {
@@ -70,5 +72,6 @@ export default function UpdateProfileInformationForm(props) {
         selectNewPhoto,
         deletePhoto,
         form,
+        verificationLinkSent,
     };
 }

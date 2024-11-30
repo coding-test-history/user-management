@@ -8,20 +8,23 @@ import InputLabel from '@/Components/Form/InputLabel.vue';
 import SecondaryButton from '@/Components/Form/SecondaryButton.vue';
 import TextInput from '@/Components/Form/TextInput.vue';
 
-defineProps({
+// composable
+import useUpdateProfileInformationForm from '@/Composables/Features/Profile/useUpdateProfileInformationForm.js';
+
+const props = defineProps({
     user: Object,
     form: Object,
 });
 
-const verificationLinkSent = ref(null);
 const photoPreview = ref(null);
 const photoInput = ref(null);
 
 defineExpose({
-    verificationLinkSent,
     photoPreview,
     photoInput
 });
+
+const { selectNewPhoto, updatePhotoPreview, sendEmailVerification, verificationLinkSent, deletePhoto } = useUpdateProfileInformationForm(props, photoInput, photoPreview);
 
 </script>
 
@@ -54,6 +57,7 @@ defineExpose({
 
         <InputError :message="form.errors.photo" class="mt-2" />
     </div>
+    <!-- end profile photo -->
 
     <!-- Name -->
     <div class="col-span-6 sm:col-span-4">
@@ -61,14 +65,18 @@ defineExpose({
         <TextInput id="name" v-model="form.name" type="text" class="mt-1 block w-full" required autocomplete="name" />
         <InputError :message="form.errors.name" class="mt-2" />
     </div>
+    <!-- end name -->
 
     <!-- Email -->
     <div class="col-span-6 sm:col-span-4">
+        <!-- input email -->
         <InputLabel for="email" value="Email" />
         <TextInput id="email" v-model="form.email" type="email" class="mt-1 block w-full" required
             autocomplete="username" />
         <InputError :message="form.errors.email" class="mt-2" />
+        <!-- end input email -->
 
+        <!-- message -->
         <div v-if="$page.props.jetstream.hasEmailVerification && user.email_verified_at === null">
             <p class="text-sm mt-2 dark:text-white">
                 Your email address is unverified.
@@ -84,5 +92,7 @@ defineExpose({
                 A new verification link has been sent to your email address.
             </div>
         </div>
+        <!-- end message -->
     </div>
+    <!-- end email -->
 </template>
