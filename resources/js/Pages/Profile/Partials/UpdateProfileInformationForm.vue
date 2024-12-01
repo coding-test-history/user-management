@@ -16,15 +16,15 @@ import useUpdateProfileInformationForm from '@/Composables/Features/Profile/useU
 // featur components
 import UpdateProfileInformationForm from '@/Components/Features/Profile/UpdateProfileInformationForm.vue';
 
-const props = defineProps({
-    user: Object,
-    // form: Object
-});
+// models
+import { props } from '@/Models/ProfileModel.js';
+
+const prop = defineProps(props);
 
 const photoPreview = ref(null);
 const photoInput = ref(null);
 
-const { updateProfileInformation, form } = useUpdateProfileInformationForm(props, photoInput, photoPreview);
+const { updateProfileInformation, form } = useUpdateProfileInformationForm(prop, photoInput, photoPreview);
 </script>
 
 <template>

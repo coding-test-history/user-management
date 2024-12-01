@@ -17,4 +17,5 @@ export const props = {
     updateApiToken: Function,
     apiTokenBeingDeleted: Boolean,
     deleteApiToken: Function,
+    title: { type: String, default: "API Tokens" },
 };

@@ -10,9 +10,8 @@ import DeleteTokenConfirmationModal from '@/Components/Features/API/DeleteTokenC
 import { useApiTokenManager } from '@/Composables/Features/API/useApiTokenManager.js';
 
 // models
-import { props } from '@/Models/API/ApiTokenManager.js';
+import { props } from '@/Models/ApiModel.js';
 defineProps(props);
-
 </script>
 
 <template>

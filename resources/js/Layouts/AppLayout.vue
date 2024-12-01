@@ -8,10 +8,10 @@ import Banner from '@/Components/Cards/Banner.vue';
 import Navbar from '@/Components/Utilities/Navbar.vue';
 import Header from '@/Components/Utilities/Header.vue';
 
-defineProps({
-    title: String,
-    showHeader: Boolean,
-});
+// models
+import { props } from '@/Models/AppLayoutModel.js';
+
+defineProps(props);
 </script>
 
 <template>

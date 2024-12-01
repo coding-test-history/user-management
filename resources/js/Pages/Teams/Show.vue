@@ -9,11 +9,9 @@ import UpdateTeamNameForm from '@/Pages/Teams/Partials/UpdateTeamNameForm.vue';
 // section components
 import SectionBorder from '@/Components/Sections/SectionBorder.vue';
 
-defineProps({
-    team: Object,
-    availableRoles: Array,
-    permissions: Object,
-});
+import { props } from "@/Models/TeamsModel.js";
+
+defineProps(props);
 </script>
 
 <template>

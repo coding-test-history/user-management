@@ -7,7 +7,7 @@ import SectionBorder from '@/Components/Sections/SectionBorder.vue';
 import ActionSection from '@/Components/Sections/ActionSection.vue';
 
 // models
-import { props } from '@/Models/API/ApiTokenManager.js';
+import { props } from '@/Models/ApiModel.js';
 
 const prop = defineProps(props);
 

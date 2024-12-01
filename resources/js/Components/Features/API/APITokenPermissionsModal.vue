@@ -11,7 +11,7 @@ import Checkbox from '@/Components/Form/Checkbox.vue';
 import { useApiTokenManager } from '@/Composables/Features/API/useApiTokenManager.js';
 
 // models
-import { props } from "@/Models/API/ApiTokenManager.js";
+import { props } from "@/Models/ApiModel.js";
 
 const prop = defineProps(props);
 

@@ -14,14 +14,10 @@ import SectionBorder from '@/Components/Sections/SectionBorder.vue';
 // card components
 import Breadcrumb from '@/Components/Cards/Breadcrumb.vue';
 
-defineProps({
-    confirmsTwoFactorAuthentication: Boolean,
-    sessions: Array,
-    title: {
-        type : String,
-        default : 'User Profile'
-    }
-});
+// models
+import { props } from '@/Models/ProfileModel.js';
+
+defineProps(props);
 </script>
 
 <template>

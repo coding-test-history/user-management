@@ -7,12 +7,10 @@ import Breadcrumb from '@/Components/Cards/Breadcrumb.vue';
 // feature components
 import Content from '@/Components/Features/Dashboard/Content.vue';
 
-defineProps({
-    title: {
-        type: String,
-        default: 'Dashboard'
-    }
-});
+// models
+import { props } from '@/Models/DashboardModel.js';
+
+defineProps(props);
 </script>
 
 <template>

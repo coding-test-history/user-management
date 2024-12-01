@@ -9,13 +9,11 @@ import Header from '@/Components/Features/Welcome/Header.vue';
 import Content from '@/Components/Features/Welcome/Content.vue';
 import Footer from '@/Components/Features/Welcome/Footer.vue';
 
-defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
-    laravelVersion: String,
-    phpVersion: String,
-    title: { type: String, default: 'Welcome' }
-});
+
+// models
+import { props } from '@/Models/WelcomeModel.js';
+
+defineProps(props);
 </script>
 
 <template>

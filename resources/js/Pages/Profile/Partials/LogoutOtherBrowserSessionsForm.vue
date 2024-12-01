@@ -6,9 +6,10 @@ import ActionSection from '@/Components/Sections/ActionSection.vue';
 import LogoutOtherBrowserSessionsForm from '@/Components/Features/Profile/LogoutOtherBrowserSessionsForm.vue';
 import OtherBrowserSessions from '@/Components/Features/Profile/OtherBrowserSessions.vue';
 
-defineProps({
-    sessions: Array,
-});
+// models
+import { props } from '@/Models/ProfileModel.js';
+
+defineProps(props);
 </script>
 
 <template>

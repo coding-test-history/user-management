@@ -5,13 +5,13 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import ApiTokenManager from '@/Pages/API/Partials/ApiTokenManager.vue';
 
 // models
-import { props } from '@/Models/API/ApiTokenManager.js';
+import { props } from '@/Models/ApiModel.js';
 
 defineProps(props);
 </script>
 
 <template>
-    <AppLayout title="API Tokens">
+    <AppLayout :title="title">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 API Tokens

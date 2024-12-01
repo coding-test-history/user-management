@@ -16,7 +16,7 @@ import ActionMessage from '@/Components/Messages/ActionMessage.vue';
 import FormSection from '@/Components/Sections/FormSection.vue';
 
 // models
-import { props } from '@/Models/API/ApiTokenManager.js';
+import { props } from '@/Models/ApiModel.js';
 
 const prop = defineProps(props);
 
