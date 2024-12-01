@@ -10,7 +10,6 @@ import useConfirmPassword from "@/Composables/Features/Auth/useConfirmPassword.j
 
 // defined composables
 const { form, passwordInput, submit } = useConfirmPassword();
-
 </script>
 
 <template>

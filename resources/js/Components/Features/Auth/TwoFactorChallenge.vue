@@ -1,4 +1,5 @@
 <script setup>
+// vue components
 import { ref } from 'vue';
 
 // form components
@@ -7,16 +8,11 @@ import InputLabel from '@/Components/Form/InputLabel.vue';
 import PrimaryButton from '@/Components/Form/PrimaryButton.vue';
 import TextInput from '@/Components/Form/TextInput.vue';
 
-defineProps({
-    form: Object,
-    recovery: {
-        type: [Boolean, Number],
-        default: false,
-    },
-    toggleRecovery: Function,
-    codeInput: String,
-    recoveryCodeInput: String,
-});
+// models
+import { generalProps, twoFactorAuthenticationProps } from "@/Models/AuthModel.js";
+
+// props management
+defineProps({ ...generalProps, ...twoFactorAuthenticationProps });
 </script>
 
 <template>

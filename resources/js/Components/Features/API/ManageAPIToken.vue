@@ -7,9 +7,10 @@ import SectionBorder from '@/Components/Sections/SectionBorder.vue';
 import ActionSection from '@/Components/Sections/ActionSection.vue';
 
 // models
-import { props } from '@/Models/ApiModel.js';
+import { generalProps, deleteConfirmationProps, manageApiTokenProps } from '@/Models/ApiModel.js';
 
-const prop = defineProps(props);
+// props management
+const prop = defineProps({ ...generalProps, ...deleteConfirmationProps, ...manageApiTokenProps });
 
 const { manageApiTokenPermissions, confirmApiTokenDeletion } = useApiTokenManager(prop);
 </script>

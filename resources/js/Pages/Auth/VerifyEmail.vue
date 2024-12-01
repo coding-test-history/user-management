@@ -1,4 +1,5 @@
 <script setup>
+// vue components
 import { Head } from '@inertiajs/vue3';
 
 // card components
@@ -11,11 +12,13 @@ import VerifyEmail from '@/Components/Features/Auth/VerifyEmail.vue';
 // composables
 import useVerifyEmail from '@/Composables/Features/Auth/useVerifyEmail.js'
 
-const props = defineProps({
-    status: String,
+// models
+import { generalProps } from "@/Models/AuthModel.js";
 
-});
+// props management
+const props = defineProps(generalProps);
 
+// very email management
 const { form, verificationLinkSent, submit } = useVerifyEmail(props);
 </script>
 

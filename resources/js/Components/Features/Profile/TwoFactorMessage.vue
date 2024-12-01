@@ -1,8 +1,8 @@
 <script setup>
-const props = defineProps({
-    twoFactorEnabled: Boolean,
-    confirming: Boolean,
-});
+// models
+import { twoFactorProps } from '@/Models/ProfileModel.js';
+
+const props = defineProps(twoFactorProps);
 </script>
 
 <template>

@@ -1,14 +1,12 @@
 <script setup>
+// vue components
 import { Link } from '@inertiajs/vue3';
 
-defineProps({
-    canLogin: {
-        type: Boolean,
-    },
-    canRegister: {
-        type: Boolean,
-    },
-});
+// models
+import { generalProps } from "@/Models/WelcomeModel.js";
+
+// props management
+defineProps(generalProps);
 </script>
 
 <template>

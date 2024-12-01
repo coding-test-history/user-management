@@ -1,5 +1,6 @@
 <script setup>
-import { Link, useForm } from '@inertiajs/vue3';
+// vue components
+import { Link } from '@inertiajs/vue3';
 
 // form components
 import Checkbox from '@/Components/Form/Checkbox.vue';
@@ -25,7 +26,7 @@ const { form, submit } = useRegisterForm();
             </Link>
         </div>
         <!-- end back to home link -->
-         
+
         <!-- input name -->
         <div>
             <InputLabel for="name" value="Name" />

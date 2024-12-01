@@ -16,32 +16,42 @@ import ActionMessage from '@/Components/Messages/ActionMessage.vue';
 import FormSection from '@/Components/Sections/FormSection.vue';
 
 // models
-import { props } from '@/Models/ApiModel.js';
+import { generalProps } from '@/Models/ApiModel.js';
 
-const prop = defineProps(props);
+// props management
+const prop = defineProps(generalProps);
 
+// api token manager
 const { createApiTokenForm, createApiToken } = useApiTokenManager(prop);
 </script>
 
 
 <template>
     <FormSection @submitted="createApiToken">
+        <!-- title -->
         <template #title>
             Create API Token
         </template>
+        <!-- end title -->
 
+        <!-- description -->
         <template #description>
             API tokens allow third-party services to authenticate with our application on your behalf.
         </template>
+        <!-- end description -->
 
+        <!-- form -->
         <template #form>
+            <!-- input name -->
             <div class="col-span-6 sm:col-span-4">
                 <InputLabel for="name" value="Name" />
                 <TextInput id="name" v-model="createApiTokenForm.name" type="text" class="mt-1 block w-full"
                     autofocus />
                 <InputError :message="createApiTokenForm.errors.name" class="mt-2" />
             </div>
+            <!-- end input name -->
 
+            <!-- permission -->
             <div v-if="availablePermissions.length > 0" class="col-span-6">
                 <InputLabel for="permissions" value="Permissions" />
                 <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -53,8 +63,11 @@ const { createApiTokenForm, createApiToken } = useApiTokenManager(prop);
                     </div>
                 </div>
             </div>
+            <!-- end permission -->
         </template>
+        <!-- end form -->
 
+        <!-- actions -->
         <template #actions>
             <ActionMessage :on="createApiTokenForm.recentlySuccessful" class="me-3">
                 Created.
@@ -64,5 +77,6 @@ const { createApiTokenForm, createApiToken } = useApiTokenManager(prop);
                 Create
             </PrimaryButton>
         </template>
+        <!-- end actions -->
     </FormSection>
 </template>

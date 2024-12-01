@@ -9,16 +9,15 @@ import Header from '@/Components/Features/Welcome/Header.vue';
 import Content from '@/Components/Features/Welcome/Content.vue';
 import Footer from '@/Components/Features/Welcome/Footer.vue';
 
-
 // models
-import { props } from '@/Models/WelcomeModel.js';
+import { generalProps, footerProps } from '@/Models/WelcomeModel.js';
 
-defineProps(props);
+// props management
+defineProps({ ...generalProps, ...footerProps });
 </script>
 
 <template>
     <!-- head -->
-
     <Head :title="title" />
     <!-- end head -->
 

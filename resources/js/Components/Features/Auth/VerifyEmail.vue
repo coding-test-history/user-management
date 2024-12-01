@@ -1,4 +1,5 @@
 <script setup>
+// vue components
 import { Link } from '@inertiajs/vue3';
 
 // form components
@@ -7,10 +8,11 @@ import PrimaryButton from '@/Components/Form/PrimaryButton.vue';
 // composable
 import useVerifyEmail from '@/Composables/Features/Auth/useVerifyEmail.js'
 
-defineProps({
-    form: Object,
-});
+// models
+import { generalProps } from "@/Models/AuthModel.js";
 
+// props management
+defineProps(generalProps);
 </script>
 
 <template>

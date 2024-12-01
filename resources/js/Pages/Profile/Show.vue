@@ -1,4 +1,5 @@
 <script setup>
+// layouts
 import AppLayout from '@/Layouts/AppLayout.vue';
 
 // partials
@@ -15,9 +16,10 @@ import SectionBorder from '@/Components/Sections/SectionBorder.vue';
 import Breadcrumb from '@/Components/Cards/Breadcrumb.vue';
 
 // models
-import { props } from '@/Models/ProfileModel.js';
+import { generalProps } from '@/Models/ProfileModel.js';
 
-defineProps(props);
+// props management
+defineProps(generalProps);
 </script>
 
 <template>

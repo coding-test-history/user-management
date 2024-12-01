@@ -1,4 +1,5 @@
 <script setup>
+// vue components
 import { Head } from '@inertiajs/vue3';
 
 // card components
@@ -7,7 +8,6 @@ import AuthenticationCardLogo from '@/Components/Cards/AuthenticationCardLogo.vu
 
 // page components
 import ConfirmPasswordForm from '@/Components/Features/Auth/ConfirmPasswordForm.vue';
-
 </script>
 
 <template>

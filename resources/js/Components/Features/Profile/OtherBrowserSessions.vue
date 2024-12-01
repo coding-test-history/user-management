@@ -1,7 +1,7 @@
 <script setup>
-defineProps({
-    sessions: Array,
-});
+// models
+import { generalProps } from '@/Models/ProfileModel.js';
+defineProps(generalProps);
 </script>
 
 <template>

@@ -1,4 +1,5 @@
 <script setup>
+// vue components
 import { Link } from '@inertiajs/vue3';
 
 // form components
@@ -11,13 +12,14 @@ import TextInput from '@/Components/Form/TextInput.vue';
 // composables
 import useLoginForm from '@/Composables/Features/Auth/useLoginForm.js';
 
+// models
+import { loginProps } from "@/Models/AuthModel.js";
+
 // defined composables
 const { form, submit } = useLoginForm();
 
-defineProps({
-    canResetPassword: Boolean,
-});
-
+// props management
+defineProps(loginProps);
 </script>
 
 <template>

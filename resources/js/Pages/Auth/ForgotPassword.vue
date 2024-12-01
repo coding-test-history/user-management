@@ -1,4 +1,5 @@
 <script setup>
+// vue components
 import { Head } from '@inertiajs/vue3';
 
 // card components
@@ -8,10 +9,11 @@ import AuthenticationCardLogo from '@/Components/Cards/AuthenticationCardLogo.vu
 // page components
 import ForgotPasswordForm from '@/Components/Features/Auth/ForgotPasswordForm.vue';
 
-defineProps({
-    status: String,
-});
+// models
+import { generalProps } from "@/Models/AuthModel.js";
 
+// props management
+defineProps(generalProps);
 </script>
 
 <template>

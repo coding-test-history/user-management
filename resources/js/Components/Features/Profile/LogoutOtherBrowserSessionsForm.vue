@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-import { useForm } from "@inertiajs/vue3";
 
 // message components
 import ActionMessage from '@/Components/Messages/ActionMessage.vue';
@@ -17,14 +16,8 @@ import TextInput from '@/Components/Form/TextInput.vue';
 // composables
 import useLogoutOtherBrowserSessionsForm from "@/Composables/Features/Profile/useLogoutOtherBrowserSessionsForm.js";
 
-// Form management
-const form = useForm({
-    password: "",
-});
-const passwordInput = ref(null);
-
 // Manage state and actions for deletion
-const { confirmingLogout, confirmLogout, logoutOtherBrowserSessions, closeModal } = useLogoutOtherBrowserSessionsForm(form, passwordInput);
+const { confirmingLogout, confirmLogout, logoutOtherBrowserSessions, closeModal, form, passwordInput } = useLogoutOtherBrowserSessionsForm();
 </script>
 
 <template>

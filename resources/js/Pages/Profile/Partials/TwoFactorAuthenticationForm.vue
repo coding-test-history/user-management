@@ -10,6 +10,7 @@ import TwoFactorEnabled from '@/Components/Features/Profile/TwoFactorEnabled.vue
 // composables
 import { useTwoFactorAuthenticationForm } from '@/Composables/Features/Profile/useTwoFactorAuthenticationForm.js';
 
+// two factor authetication form management
 const {
     twoFactorEnabled,
     confirming,

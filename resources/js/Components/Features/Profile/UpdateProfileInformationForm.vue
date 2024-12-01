@@ -1,4 +1,5 @@
 <script setup>
+// vue components
 import { ref } from 'vue';
 import { Link, router } from '@inertiajs/vue3';
 
@@ -11,21 +12,27 @@ import TextInput from '@/Components/Form/TextInput.vue';
 // composable
 import useUpdateProfileInformationForm from '@/Composables/Features/Profile/useUpdateProfileInformationForm.js';
 
-const props = defineProps({
-    user: Object,
-    form: Object,
-});
+// model
+import { generalProps } from '@/Models/ProfileModel.js';
 
-const photoPreview = ref(null);
-const photoInput = ref(null);
+// props management
+const props = defineProps(generalProps);
 
+// update profile information management
+const {
+    selectNewPhoto,
+    updatePhotoPreview,
+    sendEmailVerification,
+    verificationLinkSent,
+    deletePhoto,
+    photoPreview,
+    photoInput } = useUpdateProfileInformationForm(props);
+
+// expose management
 defineExpose({
     photoPreview,
     photoInput
 });
-
-const { selectNewPhoto, updatePhotoPreview, sendEmailVerification, verificationLinkSent, deletePhoto } = useUpdateProfileInformationForm(props, photoInput, photoPreview);
-
 </script>
 
 <template>
@@ -33,20 +40,22 @@ const { selectNewPhoto, updatePhotoPreview, sendEmailVerification, verificationL
     <div v-if="$page.props.jetstream.managesProfilePhotos" class="col-span-6 sm:col-span-4">
         <!-- Profile Photo File Input -->
         <input id="photo" ref="photoInput" type="file" class="hidden" @change="updatePhotoPreview">
-
         <InputLabel for="photo" value="Photo" />
 
         <!-- Current Profile Photo -->
         <div v-show="!photoPreview" class="mt-2">
             <img :src="user.profile_photo_url" :alt="user.name" class="rounded-full size-20 object-cover">
         </div>
+        <!-- end current profile photo -->
 
         <!-- New Profile Photo Preview -->
         <div v-show="photoPreview" class="mt-2">
             <span class="block rounded-full size-20 bg-cover bg-no-repeat bg-center"
                 :style="'background-image: url(\'' + photoPreview + '\');'" />
         </div>
+        <!-- end new profile photo preview -->
 
+        <!-- select a new photo button and remove photo button -->
         <SecondaryButton class="mt-2 me-2" type="button" @click.prevent="selectNewPhoto">
             Select A New Photo
         </SecondaryButton>
@@ -54,6 +63,7 @@ const { selectNewPhoto, updatePhotoPreview, sendEmailVerification, verificationL
         <SecondaryButton v-if="user.profile_photo_path" type="button" class="mt-2" @click.prevent="deletePhoto">
             Remove Photo
         </SecondaryButton>
+        <!-- end select a new photo button and remove photo button -->
 
         <InputError :message="form.errors.photo" class="mt-2" />
     </div>

@@ -7,9 +7,9 @@ import LogoutOtherBrowserSessionsForm from '@/Components/Features/Profile/Logout
 import OtherBrowserSessions from '@/Components/Features/Profile/OtherBrowserSessions.vue';
 
 // models
-import { props } from '@/Models/ProfileModel.js';
+import { generalProps } from '@/Models/ProfileModel.js';
 
-defineProps(props);
+defineProps(generalProps);
 </script>
 
 <template>

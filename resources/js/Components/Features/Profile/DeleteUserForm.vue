@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-import { useForm } from "@inertiajs/vue3";
 
 // modal components
 import DialogModal from '@/Components/Modals/DialogModal.vue';
@@ -14,14 +13,8 @@ import TextInput from '@/Components/Form/TextInput.vue';
 // composables
 import useDeleteUserForm from "@/Composables/Features/Profile/useDeleteUserForm.js";
 
-// Form management
-const form = useForm({
-    password: "",
-});
-const passwordInput = ref(null);
-
 // Manage state and actions for deletion
-const { confirmingUserDeletion, confirmUserDeletion, deleteUser, closeModal } = useDeleteUserForm(form, passwordInput);
+const { confirmingUserDeletion, confirmUserDeletion, deleteUser, closeModal, passwordInput, form } = useDeleteUserForm();
 </script>
 
 <template>

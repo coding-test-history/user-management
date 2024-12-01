@@ -1,4 +1,5 @@
 <script setup>
+// vue components
 import { Head } from '@inertiajs/vue3';
 
 // card components

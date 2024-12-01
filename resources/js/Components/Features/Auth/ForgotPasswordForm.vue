@@ -1,4 +1,5 @@
 <script setup>
+// vue components
 import { Link } from '@inertiajs/vue3';
 
 // form components

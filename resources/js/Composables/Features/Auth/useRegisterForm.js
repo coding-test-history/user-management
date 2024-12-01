@@ -1,6 +1,8 @@
+// vue component
 import { useForm } from "@inertiajs/vue3";
 
 export default function useRegisterForm() {
+    // form handler
     const form = useForm({
         name: "",
         email: "",
@@ -9,6 +11,7 @@ export default function useRegisterForm() {
         terms: false,
     });
 
+    // process register
     const submit = () => {
         form.post(route("register"), {
             onFinish: () => form.reset("password", "password_confirmation"),

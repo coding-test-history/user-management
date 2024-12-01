@@ -1,6 +1,8 @@
-import { router } from '@inertiajs/vue3';
+// vue components
+import { router } from "@inertiajs/vue3";
 
 export default function useNavbar() {
+    // switch team handler
     const switchToTeam = (team) => {
         router.put(
             route("current-team.update"),
@@ -13,6 +15,7 @@ export default function useNavbar() {
         );
     };
 
+    // logout handler
     const logout = () => {
         router.post(route("logout"));
     };

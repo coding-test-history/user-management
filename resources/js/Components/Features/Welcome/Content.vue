@@ -1,10 +1,9 @@
 <script setup>
-defineProps({
-    onImageError: {
-        type: Function,
-        required: true,
-    },
-});
+// models
+import { onImageErrorProps } from "@/Models/WelcomeModel.js";
+
+// props management
+defineProps(onImageErrorProps);
 </script>
 
 <template>

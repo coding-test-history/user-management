@@ -11,19 +11,24 @@ import Checkbox from '@/Components/Form/Checkbox.vue';
 import { useApiTokenManager } from '@/Composables/Features/API/useApiTokenManager.js';
 
 // models
-import { props } from "@/Models/ApiModel.js";
+import { generalProps, APITokenPermissionsProps } from "@/Models/ApiModel.js";
 
-const prop = defineProps(props);
+// props management
+const prop = defineProps({ ...generalProps, ...APITokenPermissionsProps });
 
+// api token manager
 const { updateApiTokenForm, updateApiToken } = useApiTokenManager(prop);
 </script>
 
 <template>
     <DialogModal :show="managingPermissionsFor != null" @close="managingPermissionsFor = null">
+        <!-- title -->
         <template #title>
             API Token Permissions
         </template>
+        <!-- end title -->
 
+        <!-- content -->
         <template #content>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div v-for="permission in availablePermissions" :key="permission">
@@ -34,7 +39,9 @@ const { updateApiTokenForm, updateApiToken } = useApiTokenManager(prop);
                 </div>
             </div>
         </template>
+        <!-- end content -->
 
+        <!-- footer -->
         <template #footer>
             <SecondaryButton @click="managingPermissionsFor = null">
                 Cancel
@@ -45,5 +52,6 @@ const { updateApiTokenForm, updateApiToken } = useApiTokenManager(prop);
                 Save
             </PrimaryButton>
         </template>
+        <!-- end footer -->
     </DialogModal>
 </template>

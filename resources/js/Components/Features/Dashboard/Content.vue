@@ -1,4 +1,5 @@
 <script setup>
+// utility components
 import ApplicationLogo from '@/Components/Utilities/ApplicationLogo.vue';
 </script>
 

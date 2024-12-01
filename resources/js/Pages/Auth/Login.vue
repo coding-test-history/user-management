@@ -1,4 +1,5 @@
 <script setup>
+// vue components
 import { Head } from '@inertiajs/vue3';
 
 // card components
@@ -8,11 +9,11 @@ import AuthenticationCardLogo from '@/Components/Cards/AuthenticationCardLogo.vu
 // page components
 import LoginForm from '@/Components/Features/Auth/LoginForm.vue';
 
-defineProps({
-    canResetPassword: Boolean,
-    status: String,
-});
+// models
+import { generalProps, loginProps } from "@/Models/AuthModel.js";
 
+// props management
+defineProps({ ...generalProps, ...loginProps });
 </script>
 
 <template>
@@ -34,7 +35,7 @@ defineProps({
         <!-- end status -->
 
         <!-- login form -->
-         <LoginForm :can-reset-password="canResetPassword" />
-         <!-- end login form -->
+        <LoginForm :can-reset-password="canResetPassword" />
+        <!-- end login form -->
     </AuthenticationCard>
 </template>

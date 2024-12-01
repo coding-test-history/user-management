@@ -1,4 +1,5 @@
 <script setup>
+// vue components
 import { ref } from 'vue';
 
 // message components
@@ -17,14 +18,13 @@ import useUpdateProfileInformationForm from '@/Composables/Features/Profile/useU
 import UpdateProfileInformationForm from '@/Components/Features/Profile/UpdateProfileInformationForm.vue';
 
 // models
-import { props } from '@/Models/ProfileModel.js';
+import { generalProps } from '@/Models/ProfileModel.js';
 
-const prop = defineProps(props);
+// props mangement
+const prop = defineProps(generalProps);
 
-const photoPreview = ref(null);
-const photoInput = ref(null);
-
-const { updateProfileInformation, form } = useUpdateProfileInformationForm(prop, photoInput, photoPreview);
+// update profile information form management
+const { updateProfileInformation, form } = useUpdateProfileInformationForm(prop);
 </script>
 
 <template>

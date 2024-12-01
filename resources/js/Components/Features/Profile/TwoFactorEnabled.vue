@@ -5,21 +5,10 @@ import PrimaryButton from '@/Components/Form/PrimaryButton.vue';
 import DangerButton from '@/Components/Form/DangerButton.vue';
 import SecondaryButton from '@/Components/Form/SecondaryButton.vue';
 
-const props = defineProps({
-    twoFactorEnabled: Boolean,
-    enableTwoFactorAuthentication: Function,
-    confirmTwoFactorAuthentication: Function,
-    regenerateRecoveryCodes: Function,
-    showRecoveryCodes: Function,
-    disableTwoFactorAuthentication: Function,
-    confirming: Boolean,
-    recoveryCodes: Array,
-    disabling: Boolean,
-    enabling: Boolean,
-    confirmationForm: Object,
-    qrCode:String,
-    setupKey:String,
-});
+// models
+import { twoFactorProps } from '@/Models/ProfileModel.js';
+
+const props = defineProps(twoFactorProps);
 </script>
 
 <template>

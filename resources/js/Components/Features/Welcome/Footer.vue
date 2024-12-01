@@ -1,14 +1,9 @@
 <script setup>
-defineProps({
-    laravelVersion: {
-        type: String,
-        required: true,
-    },
-    phpVersion: {
-        type: String,
-        required: true,
-    },
-});
+// models
+import { footerProps } from "@/Models/WelcomeModel.js";
+
+// props maangement
+defineProps(footerProps);
 </script>
 
 <template>

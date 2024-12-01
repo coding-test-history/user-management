@@ -1,4 +1,5 @@
 <script setup>
+// layout
 import AppLayout from '@/Layouts/AppLayout.vue';
 
 // card components
@@ -10,6 +11,7 @@ import Content from '@/Components/Features/Dashboard/Content.vue';
 // models
 import { props } from '@/Models/DashboardModel.js';
 
+// props management
 defineProps(props);
 </script>
 

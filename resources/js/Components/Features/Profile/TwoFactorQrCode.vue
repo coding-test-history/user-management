@@ -5,15 +5,10 @@ import InputLabel from '@/Components/Form/InputLabel.vue';
 import TextInput from '@/Components/Form/TextInput.vue';
 import InputError from '@/Components/Form/InputError.vue';
 
-const props = defineProps({
-    twoFactorEnabled: Boolean,
-    qrCode: String,
-    confirming: Boolean,
-    confirmationForm: Object,
-    confirmTwoFactorAuthentication:Function,
-    setupKey: String,
-    recoveryCodes: Array
-});
+// models
+import { twoFactorProps } from '@/Models/ProfileModel.js';
+
+const props = defineProps(twoFactorProps);
 </script>
 
 <template>

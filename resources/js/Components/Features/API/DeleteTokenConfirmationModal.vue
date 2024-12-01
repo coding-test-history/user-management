@@ -10,24 +10,30 @@ import DangerButton from '@/Components/Form/DangerButton.vue';
 import { useApiTokenManager } from '@/Composables/Features/API/useApiTokenManager.js';
 
 // models
-import { props } from "@/Models/ApiModel.js";
+import { generalProps, deleteConfirmationProps } from "@/Models/ApiModel.js";
 
-const prop = defineProps(props);
+// props management
+const prop = defineProps({ ...generalProps, ...deleteConfirmationProps });
 
+// api token manager
 const { deleteApiTokenForm, confirmApiTokenDeletion } = useApiTokenManager(prop);
 </script>
 
-
 <template>
     <ConfirmationModal :show="apiTokenBeingDeleted != null" @close="apiTokenBeingDeleted = null">
+        <!-- title -->
         <template #title>
             Delete API Token
         </template>
+        <!-- end title -->
 
+        <!-- content -->
         <template #content>
             Are you sure you would like to delete this API token?
         </template>
+        <!-- end content -->
 
+        <!-- footer -->
         <template #footer>
             <SecondaryButton @click="apiTokenBeingDeleted = null">
                 Cancel
@@ -38,5 +44,6 @@ const { deleteApiTokenForm, confirmApiTokenDeletion } = useApiTokenManager(prop)
                 Delete
             </DangerButton>
         </template>
+        <!-- end footer -->
     </ConfirmationModal>
 </template>

@@ -1,4 +1,5 @@
 <script setup>
+// vue components
 import AppLayout from '@/Layouts/AppLayout.vue';
 
 // partials
@@ -9,35 +10,40 @@ import UpdateTeamNameForm from '@/Pages/Teams/Partials/UpdateTeamNameForm.vue';
 // section components
 import SectionBorder from '@/Components/Sections/SectionBorder.vue';
 
+// models
 import { props } from "@/Models/TeamsModel.js";
 
+// props management
 defineProps(props);
 </script>
 
 <template>
-    <AppLayout title="Team Settings">
+    <AppLayout :title="title">
+        <!-- title -->
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Team Settings
+                {{ title }}
             </h2>
         </template>
+        <!-- end title -->
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+                <!-- update team form -->
                 <UpdateTeamNameForm :team="team" :permissions="permissions" />
+                <!-- end update team form -->
 
-                <TeamMemberManager
-                    class="mt-10 sm:mt-0"
-                    :team="team"
-                    :available-roles="availableRoles"
-                    :user-permissions="permissions"
-                />
+                <!-- team member manager -->
+                <TeamMemberManager class="mt-10 sm:mt-0" :team="team" :available-roles="availableRoles"
+                    :user-permissions="permissions" />
+                <!-- end team member manager -->
 
-                <template v-if="permissions.canDeleteTeam && ! team.personal_team">
+                <!-- delete team form -->
+                <template v-if="permissions.canDeleteTeam && !team.personal_team">
                     <SectionBorder />
-
                     <DeleteTeamForm class="mt-10 sm:mt-0" :team="team" />
                 </template>
+                <!-- end delete team form -->
             </div>
         </div>
     </AppLayout>

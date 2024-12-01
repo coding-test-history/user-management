@@ -1,8 +1,10 @@
+// vue components
 import { ref, computed, watch } from "vue";
 import { router, useForm, usePage } from "@inertiajs/vue3";
 import axios from "axios";
 
 export function useTwoFactorAuthenticationForm() {
+    // default
     const page = usePage();
     const enabling = ref(false);
     const confirming = ref(false);
@@ -10,8 +12,11 @@ export function useTwoFactorAuthenticationForm() {
     const qrCode = ref(null);
     const setupKey = ref(null);
     const recoveryCodes = ref([]);
+
+    // form handler
     const confirmationForm = useForm({ code: "" });
 
+    // two factor enabled status handler
     const twoFactorEnabled = computed(
         () => !enabling.value && page.props.auth.user?.two_factor_enabled
     );
@@ -23,6 +28,7 @@ export function useTwoFactorAuthenticationForm() {
         }
     });
 
+    // process enable 2FA
     const enableTwoFactorAuthentication = () => {
         enabling.value = true;
 
@@ -45,6 +51,7 @@ export function useTwoFactorAuthenticationForm() {
         );
     };
 
+    // process disable 2FA
     const disableTwoFactorAuthentication = () => {
         disabling.value = true;
 
@@ -57,27 +64,32 @@ export function useTwoFactorAuthenticationForm() {
         });
     };
 
+    // process regenerate recovery codes
     const regenerateRecoveryCodes = () => {
         axios
             .post(route("two-factor.recovery-codes"))
             .then(() => showRecoveryCodes());
     };
 
+    // proces show qr codes
     const showQrCode = () =>
         axios.get(route("two-factor.qr-code")).then((response) => {
             qrCode.value = response.data.svg;
         });
 
+    // proces show setup key
     const showSetupKey = () =>
         axios.get(route("two-factor.secret-key")).then((response) => {
             setupKey.value = response.data.secretKey;
         });
 
+    // proces show recovery codes
     const showRecoveryCodes = () =>
         axios.get(route("two-factor.recovery-codes")).then((response) => {
             recoveryCodes.value = response.data;
         });
 
+    // processs confirm 2FA
     const confirmTwoFactorAuthentication = () => {
         confirmationForm.post(route("two-factor.confirm"), {
             errorBag: "confirmTwoFactorAuthentication",
@@ -89,7 +101,6 @@ export function useTwoFactorAuthenticationForm() {
                 setupKey.value = null;
             },
         });
-        console.log(confirmationForm);
     };
 
     return {

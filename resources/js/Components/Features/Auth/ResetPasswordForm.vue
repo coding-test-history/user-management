@@ -8,10 +8,11 @@ import TextInput from '@/Components/Form/TextInput.vue';
 // composables
 import useResetPassword from '@/Composables/Features/Auth/useResetPassword.js';
 
-const props = defineProps({
-    email: String,
-    token: String,
-});
+// moodels
+import { resetPasswordProps } from "@/Models/AuthModel.js";
+
+// props management
+const props = defineProps(resetPasswordProps);
 
 // defined composables
 const { form, submit } = useResetPassword(props);
@@ -19,7 +20,7 @@ const { form, submit } = useResetPassword(props);
 
 <template>
     <form @submit.prevent="submit">
-         <!-- input email -->
+        <!-- input email -->
         <div>
             <InputLabel for="email" value="Email" />
             <TextInput id="email" v-model="form.email" type="email" class="mt-1 block w-full" required autofocus

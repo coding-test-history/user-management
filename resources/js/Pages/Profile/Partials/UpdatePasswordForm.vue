@@ -14,6 +14,7 @@ import ActionMessage from '@/Components/Messages/ActionMessage.vue';
 // section components
 import FormSection from '@/Components/Sections/FormSection.vue';
 
+// update password form management
 const { updatePassword, form } = useUpdatePasswordForm();
 </script>
 
