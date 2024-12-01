@@ -1,0 +1,20 @@
+export const props = {
+    availablePermissions: Array,
+    defaultPermissions: Array,
+    tokens: Array,
+    show: Boolean,
+    tokenValue: String,
+    selectedPermissions: Array,
+    processing: Boolean,
+    tokenName: String,
+    displayingToken: {
+        type: Boolean,
+        default: false,
+    },
+    managingPermissionsFor: Boolean,
+    manageApiTokenPermissions: Function,
+    confirmApiTokenDeletion: Function,
+    updateApiToken: Function,
+    apiTokenBeingDeleted: Boolean,
+    deleteApiToken: Function,
+};

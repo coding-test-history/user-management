@@ -4,11 +4,10 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 // partials
 import ApiTokenManager from '@/Pages/API/Partials/ApiTokenManager.vue';
 
-defineProps({
-    tokens: Array,
-    availablePermissions: Array,
-    defaultPermissions: Array,
-});
+// models
+import { props } from '@/Models/API/ApiTokenManager.js';
+
+defineProps(props);
 </script>
 
 <template>
@@ -21,11 +20,8 @@ defineProps({
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <ApiTokenManager
-                    :tokens="tokens"
-                    :available-permissions="availablePermissions"
-                    :default-permissions="defaultPermissions"
-                />
+                <ApiTokenManager :tokens="tokens" :available-permissions="availablePermissions"
+                    :default-permissions="defaultPermissions" />
             </div>
         </div>
     </AppLayout>
