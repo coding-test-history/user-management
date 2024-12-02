@@ -11,10 +11,10 @@ import UpdateTeamNameForm from '@/Pages/Teams/Partials/UpdateTeamNameForm.vue';
 import SectionBorder from '@/Components/Sections/SectionBorder.vue';
 
 // models
-import { props } from "@/Models/TeamsModel.js";
+import { generalProps, titleProps } from "@/Models/TeamModel.js";
 
 // props management
-defineProps(props);
+defineProps({...generalProps, ...titleProps});
 </script>
 
 <template>

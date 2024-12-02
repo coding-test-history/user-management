@@ -3,9 +3,9 @@
 import ActionSection from '@/Components/Sections/ActionSection.vue';
 
 // feature components
-import TwoFactorMessage from '@/Components/Features/Profile/TwoFactorMessage.vue';
-import TwoFactorQrCode from '@/Components/Features/Profile/TwoFactorQrCode.vue';
-import TwoFactorEnabled from '@/Components/Features/Profile/TwoFactorEnabled.vue';
+import TwoFactorMessage from '@/Components/Features/Profile/2FA/Message.vue';
+import TwoFactorQrCode from '@/Components/Features/Profile/2FA/QrCode.vue';
+import TwoFactorEnabled from '@/Components/Features/Profile/2FA/Enabled.vue';
 
 // composables
 import { useTwoFactorAuthenticationForm } from '@/Composables/Features/Profile/useTwoFactorAuthenticationForm.js';
