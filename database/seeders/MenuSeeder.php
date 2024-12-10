@@ -16,72 +16,46 @@ class MenuSeeder extends Seeder
         $menuList = [
             [
                 'menu_name' => 'User Management',
-                'link' => '#',
-                'icon' => 'user',
+                'route' => '#',
                 'parent_menu_id' => null,
                 'submenu' => [
                     [
                         'menu_name' => 'User',
-                        'link' => 'user-management/user',
-                        'icon' => null,
+                        'route' => 'users.index',
                         'parent_menu_id' => null,
                     ],
                     [
-                        'menu_name' => 'Role',
-                        'link' => 'user-management/role',
-                        'icon' => null,
+                        'menu_name' => 'Role & Permission',
+                        'route' => 'users.role-permission',
                         'parent_menu_id' => null,
                     ],
                     [
                         'menu_name' => 'Menu',
-                        'link' => 'user-management/menu',
-                        'icon' => null,
+                        'route' => 'user.menus',
                         'parent_menu_id' => null,
                     ],
                 ],
             ],
             [
-                'menu_name' => 'Menu 2',
-                'link' => '#',
-                'icon' => 'abstract-26',
+                'menu_name' => 'Team Management',
+                'route' => '#',
                 'parent_menu_id' => null,
                 'submenu' => [
                     [
-                        'menu_name' => 'Submenu 2.1',
-                        'link' => '#',
-                        'icon' => null,
+                        'menu_name' => 'Team Settings',
+                        'route' => 'teams.show',
                         'parent_menu_id' => null,        
                     ],
                     [
-                        'menu_name' => 'Submenu 2.2',
-                        'link' => '#',
-                        'icon' => null,
+                        'menu_name' => 'Create New Team',
+                        'route' => 'teams.create',
                         'parent_menu_id' => null,        
-                    ],
-                    [
-                        'menu_name' => 'Submenu 2.3',
-                        'link' => '#',
-                        'icon' => null,
-                        'parent_menu_id' => null,        
-                    ],
-                    [
-                        'menu_name' => 'Submenu 2.4',
-                        'link' => '#',
-                        'icon' => null,
-                        'parent_menu_id' => null,        
-                    ],
-                    [
-                        'menu_name' => 'Submenu 2.5',
-                        'link' => '#',
-                        'icon' => null,
-                        'parent_menu_id' => null,        
-                    ],
+                    ]
                 ],
             ],
             [
-                'menu_name' => 'Menu 3',
-                'link' => '#',
-                'icon' => 'abstract-26',
+                'menu_name' => 'API Tokens',
+                'route' => 'api-tokens.index',
                 'parent_menu_id' => null,
             ]
         ];
@@ -95,8 +69,7 @@ class MenuSeeder extends Seeder
             
             $createMenu = Menu::create([
                 'menu_name' => $item['menu_name'],
-                'link' => $item['link'],
-                'icon' => $item['icon'],
+                'route' => $item['route'],
                 'parent_menu_id' => $parentId,
             ]);
 
