@@ -19,11 +19,11 @@ class UserSeeder extends Seeder
         $roles = Role::select('id', 'role_name')->get();
 
         // create uesr
-        foreach ($roles as $value) {
-            $roleName = $value->role_name;
+        foreach ($roles as $key => $value) {
+            $num = $key + 1;
             User::factory()->withPersonalTeam()->create([
-                'name' => $roleName,
-                'email' => str_replace(' ', '_', $roleName) . '@example.com',
+                'name' => 'User ' . $num,
+                'email' =>  'user' . $num . '@mail.com',
                 'role_id' => $value->id,
                 'password' => Hash::make('password')
             ]);

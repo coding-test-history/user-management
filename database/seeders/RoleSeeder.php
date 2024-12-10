@@ -16,21 +16,17 @@ class RoleSeeder extends Seeder
     {
         $roleList = [
             [
-                'role' => 'administrator',
-                'menus' => ['User Mangement', 'User', 'Role', 'Menu', 'Menu 2', 'Submenu 2.1', 'Submenu 2.2', 'Submenu 2.3', 'Submenu 2.4', 'Submenu 2.5', 'Menu 3']
+                'role' => 'role 01',
+                'menus' => ['User Mangement', 'User', 'Role & Permission', 'Menu', 'Team Management', 'Team Settings', 'Create New Team', 'API Tokens']
             ],
             [
-                'role' => 'user management',
-                'menus' => ['User Mangement', 'User', 'Role', 'Menu']
+                'role' => 'role 02',
+                'menus' => ['User Mangement', 'User', 'Role & Permission', 'API Tokens']
             ],
             [
-                'role' => 'menu 2',
-                'menus' => ['Menu 2', 'Submenu 2.1', 'Submenu 2.2', 'Submenu 2.3', 'Submenu 2.4', 'Submenu 2.5']
+                'role' => 'role 03',
+                'menus' => ['API Tokens']
             ],
-            [
-                'role' => 'menu 3',
-                'menus' => ['Menu 3']
-            ]
         ];
 
         foreach ($roleList as $role) {
