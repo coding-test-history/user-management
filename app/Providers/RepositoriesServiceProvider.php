@@ -19,6 +19,10 @@ class RepositoriesServiceProvider extends ServiceProvider
             'App\Repositories\UserManagement\Menu\MenuRepositories',
             'App\Repositories\UserManagement\Menu\EloquentMenuRepositories'
         );
+        $this->app->bind(
+            'App\Repositories\UserManagement\RolePermission\RolePermissionRepositories',
+            'App\Repositories\UserManagement\RolePermission\EloquentRolePermissionRepositories'
+        );
     }
 
     /**
