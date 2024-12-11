@@ -8,7 +8,6 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\TermsOfService\TermsOfServiceController;
 use App\Http\Controllers\PrivacyPolicy\PrivacyPolicyController;
 use App\Http\Controllers\Welcome\WelcomeController;
-use App\Http\Controllers\UserManagement\ListController;
 
 // default page
 Route::get('/', [WelcomeController::class, 'index']);
@@ -33,9 +32,11 @@ Route::middleware([
     Route::name('users.')->prefix('users')->group(function () {
 
         // user list
-        Route::name('list.')->prefix('list')->group(function () {
-            Route::get('/', [ListController::class, 'index'])->name('index')->middleware('menuPermission:users.list.index');
-        });
+        Route::get('/list', function (Request $request) {
+            return Inertia::render('Dashboard/Show', ['menu' => $request->get('menu')]);
+        })
+            ->name('list.index')
+            ->middleware('menuPermission:users.list.index');
 
         // user role and permission
         Route::get('/role-permission', function (Request $request) {

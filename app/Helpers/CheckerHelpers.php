@@ -8,6 +8,7 @@ namespace App\Helpers;
 
 use App\Models\Menu;
 use App\Models\Role;
+use App\Models\User;
 
 class CheckerHelpers
 {
@@ -22,5 +23,11 @@ class CheckerHelpers
     public function roleChecker($data){
         $roleChecker = Role::where($data)->first();
         return $roleChecker;
+    }
+
+    // user checker
+    public function userChecker($data){
+        $userChecker = User::where($data)->first();
+        return $userChecker;
     }
 }

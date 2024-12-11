@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserManagement\MenuController;
 use App\Http\Controllers\UserManagement\RolePermissionController;
+use App\Http\Controllers\UserManagement\UserListController;
 
 Route::middleware([
     // 'auth:sanctum',
@@ -12,7 +13,12 @@ Route::middleware([
     Route::name('users.')->prefix('users')->group(function () {
 
         // user list
-        Route::name('list.')->prefix('list')->group(function () {});
+        Route::name('list.')->prefix('list')->group(function () {
+            Route::get('/{id}', [UserListController::class, 'getUserListById'])->name('get');
+            Route::post('/store', [UserListController::class, 'storeUserList'])->name('store');
+            Route::put('/update/{id}', [UserListController::class, 'updateUserList'])->name('update');
+            Route::delete('/delete/{id}', [UserListController::class, 'deleteUserList'])->name('delete');
+        });
 
         // user role and permission
         Route::name('role-permission.')->prefix('role-permission')->group(function () {

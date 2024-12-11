@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
                 'name' => 'User ' . $num,
                 'email' =>  'user' . $num . '@mail.com',
                 'role_id' => $value->id,
-                'password' => Hash::make('password')
+                'password' => 'password'
             ]);
         }
     }

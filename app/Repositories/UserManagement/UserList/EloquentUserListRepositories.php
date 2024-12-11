@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\UserManagement\RolePermission;
+namespace App\Repositories\UserManagement\UserList;
 
 /**
  * import component
@@ -21,7 +21,7 @@ use App\Traits\Message;
  * import models
  */
 
-use App\Models\Role;
+use App\Models\User;
 
 /**
  * import helpers
@@ -33,19 +33,19 @@ use App\Helpers\CheckerHelpers;
  * import interface
  */
 
-use App\Repositories\UserManagement\RolePermission\RolePermissionRepositories;
+use App\Repositories\UserManagement\UserList\UserListRepositories;
 
-class EloquentRolePermissionRepositories implements RolePermissionRepositories
+class EloquentUserListRepositories implements UserListRepositories
 {
     use Message, Response;
 
     private $checkerHelpers;
     private $date;
-    private $roleModel;
+    private $userModel;
 
     public function __construct(
         CheckerHelpers $checkerHelpers,
-        Role $roleModel
+        User $userModel
     ) {
         /**
          * initialize helper
@@ -55,7 +55,7 @@ class EloquentRolePermissionRepositories implements RolePermissionRepositories
         /**
          * initialize model
          */
-        $this->roleModel = $roleModel;
+        $this->userModel = $userModel;
 
         /**
          * static value
@@ -64,19 +64,19 @@ class EloquentRolePermissionRepositories implements RolePermissionRepositories
     }
 
     /**
-     * get role permission by id
+     * get user list by id
      */
-    public function getRolePermissionById($id)
+    public function getUserListById($id)
     {
         try {
-            // process get role data
-            $getRole = $this->checkerHelpers->roleChecker(['id' => $id]);
-            if (is_null($getRole)):
-                throw new CustomException(json_encode([$this->outputMessage('not found', 'role'), 404]));
+            // process get user list data
+            $getUser = $this->checkerHelpers->userChecker(['id' => $id]);
+            if (is_null($getUser)):
+                throw new CustomException(json_encode([$this->outputMessage('not found', 'user'), 404]));
             endif;
 
             // response data
-            $data = $getRole;
+            $data = $getUser;
             $response = $this->sendResponse(null, 200, $data);
         } catch (CustomException $ex) {
             $ex = json_decode($ex->getMessage());
@@ -88,21 +88,21 @@ class EloquentRolePermissionRepositories implements RolePermissionRepositories
     }
 
     /**
-     * store role permission
+     * store user list
      */
-    public function storeRolePermission($request)
+    public function storeUserList($request)
     {
         DB::beginTransaction();
         try {
 
-            // save role
-            $saveRole = $this->roleModel->create($request);
-            if (!$saveRole) :
-                throw new \Exception($this->outputMessage('unsaved', 'role'));
+            // save user
+            $saveUser = $this->userModel->factory()->withPersonalTeam()->create($request);
+            if (!$saveUser) :
+                throw new \Exception($this->outputMessage('unsaved', 'user'));
             endif;
 
             DB::commit();
-            $response = $this->sendResponse($this->outputMessage('saved', 'role'), 201, null);
+            $response = $this->sendResponse($this->outputMessage('saved', 'user'), 201, null);
         } catch (CustomException $ex) {
             $ex = json_decode($ex->getMessage());
             $response = $this->sendResponse($ex[0], $ex[1]);
@@ -114,27 +114,27 @@ class EloquentRolePermissionRepositories implements RolePermissionRepositories
     }
 
     /**
-     * update role permission
+     * update user list
      */
-    public function updateRolePermission($id, $request)
+    public function updateUserList($id, $request)
     {
         DB::beginTransaction();
         try {
 
-            // check role
-            $checkRole = $this->checkerHelpers->roleChecker(['id' => $id]);
-            if (is_null($checkRole)):
-                throw new CustomException(json_encode([$this->outputMessage('not found', 'role'), 404]));
+            // check user
+            $checkUser = $this->checkerHelpers->userChecker(['id' => $id]);
+            if (is_null($checkUser)):
+                throw new CustomException(json_encode([$this->outputMessage('not found', 'user'), 404]));
             endif;
 
-            // update role process
-            $updateRole = $this->roleModel->where('id', $id)->update($request);
-            if (!$updateRole) :
-                throw new \Exception($this->outputMessage('update fail', 'role'));
+            // update user process
+            $updateUser = $this->userModel->where('id', $id)->update($request);
+            if (!$updateUser) :
+                throw new \Exception($this->outputMessage('update fail', 'user'));
             endif;
 
             DB::commit();
-            $response = $this->sendResponse($this->outputMessage('updated', 'role'), 201, null);
+            $response = $this->sendResponse($this->outputMessage('updated', 'user'), 201, null);
         } catch (CustomException $ex) {
             $ex = json_decode($ex->getMessage());
             $response = $this->sendResponse($ex[0], $ex[1]);
@@ -147,27 +147,27 @@ class EloquentRolePermissionRepositories implements RolePermissionRepositories
 
 
     /**
-     * delete role permission
+     * delete user list
      */
-    public function deleteRolePermission($id)
+    public function deleteUserList($id)
     {
         DB::beginTransaction();
         try {
 
-            // check role
-            $checkRole = $this->checkerHelpers->roleChecker(['id' => $id]);
-            if (is_null($checkRole)):
-                throw new CustomException(json_encode([$this->outputMessage('not found', 'role'), 404]));
+            // check user
+            $checkUser = $this->checkerHelpers->userChecker(['id' => $id]);
+            if (is_null($checkUser)):
+                throw new CustomException(json_encode([$this->outputMessage('not found', 'user'), 404]));
             endif;
 
-            // delete role process
-            $deleteRole = $this->roleModel->where('id', $id)->delete();
-            if (!$deleteRole) :
-                throw new \Exception($this->outputMessage('undeleted', 'role'));
+            // delete user process
+            $deleteUser = $this->userModel->where('id', $id)->delete();
+            if (!$deleteUser) :
+                throw new \Exception($this->outputMessage('undeleted', 'user'));
             endif;
 
             DB::commit();
-            $response = $this->sendResponse($this->outputMessage('deleted', 'role'), 201, null);
+            $response = $this->sendResponse($this->outputMessage('deleted', 'user'), 201, null);
         } catch (CustomException $ex) {
             $ex = json_decode($ex->getMessage());
             $response = $this->sendResponse($ex[0], $ex[1]);
