@@ -18,7 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->alias([
-            'roles' => \App\Http\Middleware\Roles::class,
+            'menus' => \App\Http\Middleware\Menus::class,
+            'menuPermission' => \App\Http\Middleware\MenuPermission::class,
         ]);
 
         //
