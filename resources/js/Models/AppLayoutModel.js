@@ -1,4 +1,10 @@
+// general props
 export const props = {
     title: String,
-    showHeader: Boolean,
+    showHeader: Boolean
 };
+
+// menu props
+export const menuProps = {
+    menu : Object
+}

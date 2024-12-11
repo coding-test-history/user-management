@@ -9,9 +9,9 @@ import Navbar from '@/Components/Utilities/Navbar.vue';
 import Header from '@/Components/Utilities/Header.vue';
 
 // models
-import { props } from '@/Models/AppLayoutModel.js';
+import { props, menuProps } from '@/Models/AppLayoutModel.js';
 
-defineProps(props);
+defineProps({ ...props, ...menuProps });
 </script>
 
 <template>
@@ -27,12 +27,12 @@ defineProps(props);
 
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             <!-- nav -->
-            <Navbar />
+            <Navbar :menu="menu" />
             <!-- end nav -->
 
             <!-- Page Heading -->
             <Header :show-header="$slots.header?.().length > 0">
-                <slot name="header"/>
+                <slot name="header" />
             </Header>
             <!-- end page heading -->
 

@@ -21,7 +21,7 @@ class MenuSeeder extends Seeder
                 'submenu' => [
                     [
                         'menu_name' => 'User',
-                        'route' => 'users.index',
+                        'route' => 'users.list',
                         'parent_menu_id' => null,
                     ],
                     [
@@ -31,7 +31,7 @@ class MenuSeeder extends Seeder
                     ],
                     [
                         'menu_name' => 'Menu',
-                        'route' => 'user.menus',
+                        'route' => 'users.menu',
                         'parent_menu_id' => null,
                     ],
                 ],

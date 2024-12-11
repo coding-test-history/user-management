@@ -3,4 +3,5 @@ export const props = {
         type: String,
         default: "Dashboard",
     },
+    menu:Object
 };

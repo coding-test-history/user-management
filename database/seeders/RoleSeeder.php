@@ -17,15 +17,23 @@ class RoleSeeder extends Seeder
         $roleList = [
             [
                 'role' => 'role 01',
-                'menus' => ['User Mangement', 'User', 'Role & Permission', 'Menu', 'Team Management', 'Team Settings', 'Create New Team', 'API Tokens']
+                'menus' => ['User Management', 'User', 'Role & Permission', 'Menu', 'Team Management', 'Team Settings', 'Create New Team', 'API Tokens']
             ],
             [
                 'role' => 'role 02',
-                'menus' => ['User Mangement', 'User', 'Role & Permission', 'API Tokens']
+                'menus' => ['User Management', 'User', 'Role & Permission', 'API Tokens']
             ],
             [
                 'role' => 'role 03',
                 'menus' => ['API Tokens']
+            ],
+            [
+                'role' => 'role 04',
+                'menus' => ['Team Management', 'Team Settings', 'Create New Team', 'API Tokens']
+            ],
+            [
+                'role' => 'role 05',
+                'menus' => ['User Management', 'User',  'Menu', 'Team Management', 'Team Settings']
             ],
         ];
 
