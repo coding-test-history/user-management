@@ -3,22 +3,18 @@
 namespace App\Http\Controllers\UserManagement;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\UserManagement\Menu\StoreRequest;
 use App\Http\Requests\UserManagement\Menu\UpdateRequest;
 use App\Repositories\UserManagement\Menu\MenuRepositories;
 
 class MenuController extends Controller 
 {
-    private $request;
     private $menuRepositories;
 
     public function __construct(
-        Request $request,
         MenuRepositories $menuRepositories
     ) {
         $this->menuRepositories = $menuRepositories;
-        $this->request = $request;
     }
 
     public function getMenuById($id)

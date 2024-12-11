@@ -9,7 +9,6 @@ use App\Http\Controllers\TermsOfService\TermsOfServiceController;
 use App\Http\Controllers\PrivacyPolicy\PrivacyPolicyController;
 use App\Http\Controllers\Welcome\WelcomeController;
 use App\Http\Controllers\UserManagement\ListController;
-use App\Http\Controllers\UserManagement\RolePermissionController;
 
 // default page
 Route::get('/', [WelcomeController::class, 'index']);
@@ -39,9 +38,11 @@ Route::middleware([
         });
 
         // user role and permission
-        Route::name('role-permission.')->prefix('role-permission')->group(function () {
-            Route::get('/', [RolePermissionController::class, 'index'])->name('index')->middleware('menuPermission:users.role-permission.index');
-        });
+        Route::get('/role-permission', function (Request $request) {
+            return Inertia::render('Dashboard/Show', ['menu' => $request->get('menu')]);
+        })
+            ->name('role-permission.index')
+            ->middleware('menuPermission:users.role-permission.index');
 
         // user menu
         Route::get('/menu', function (Request $request) {
