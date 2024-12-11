@@ -1,80 +1,53 @@
 <?php
 
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use Illuminate\Support\Str;
-use Laravel\Jetstream\Jetstream;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\TermsOfService\TermsOfServiceController;
+use App\Http\Controllers\PrivacyPolicy\PrivacyPolicyController;
+use App\Http\Controllers\Welcome\WelcomeController;
+use App\Http\Controllers\UserManagement\ListController;
+use App\Http\Controllers\UserManagement\RolePermissionController;
 
 // default page
-Route::get('/', function () {
-    return Inertia::render('Welcome/Show', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [WelcomeController::class, 'index']);
 
 // terms of service
-Route::get('/terms-of-service', function () {
-    $termsFile = Jetstream::localizedMarkdownPath('terms.md');
-    return Inertia::render('TermsOfService/Show', [
-        'terms' => Str::markdown(file_get_contents($termsFile)),
-    ]);
-})->name('terms.show');
+Route::get('/terms-of-service', [TermsOfServiceController::class, 'index'])->name('terms.show');
 
 // privacy policy
-Route::get('/privacy-policy', function () {
-    $policyFile = Jetstream::localizedMarkdownPath('policy.md');
-
-    return Inertia::render('PrivacyPolicy/Show', [
-        'policy' => Str::markdown(file_get_contents($policyFile)),
-    ]);
-})->name('policy.show');
+Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('policy.show');
 
 // after login
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-    'roles'
 ])->group(function () {
 
     // dashboard
-    Route::get('/dashboard', function (Request $request) {
-        return Inertia::render('Dashboard/Show', [
-            'menu' => $request->get('menu'),
-            'phpVersion' => PHP_VERSION,
-        ]);
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // user management
     Route::name('users.')->prefix('users')->group(function () {
 
         // user list
-        Route::get('/list', function (Request $request) {
-            return Inertia::render('Dashboard/Show', [
-                'menu' => $request->get('menu'),
-                'phpVersion' => PHP_VERSION,
-            ]);
-        })->name('list');
+        Route::name('list.')->prefix('list')->group(function () {
+            Route::get('/', [ListController::class, 'index'])->name('index')->middleware('menuPermission:users.list.index');
+        });
 
         // user role and permission
-        Route::get('/role-permission', function (Request $request) {
-            return Inertia::render('Dashboard/Show', [
-                'menu' => $request->get('menu'),
-                'phpVersion' => PHP_VERSION,
-            ]);
-        })->name('role-permission');
+        Route::name('role-permission.')->prefix('role-permission')->group(function () {
+            Route::get('/', [RolePermissionController::class, 'index'])->name('index')->middleware('menuPermission:users.role-permission.index');
+        });
 
         // user menu
         Route::get('/menu', function (Request $request) {
-            return Inertia::render('Dashboard/Show', [
-                'menu' => $request->get('menu'),
-                'phpVersion' => PHP_VERSION,
-            ]);
-        })->name('menu');
+            return Inertia::render('Dashboard/Show', ['menu' => $request->get('menu')]);
+        })
+            ->name('menu.index')
+            ->middleware('menuPermission:users.menu.index');
     });
 });

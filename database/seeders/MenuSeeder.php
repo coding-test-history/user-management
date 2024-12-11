@@ -21,17 +21,17 @@ class MenuSeeder extends Seeder
                 'submenu' => [
                     [
                         'menu_name' => 'User',
-                        'route' => 'users.list',
+                        'route' => 'users.list.index',
                         'parent_menu_id' => null,
                     ],
                     [
                         'menu_name' => 'Role & Permission',
-                        'route' => 'users.role-permission',
+                        'route' => 'users.role-permission.index',
                         'parent_menu_id' => null,
                     ],
                     [
                         'menu_name' => 'Menu',
-                        'route' => 'users.menu',
+                        'route' => 'users.menu.index',
                         'parent_menu_id' => null,
                     ],
                 ],

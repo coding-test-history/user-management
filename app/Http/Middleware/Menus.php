@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Role;
 use App\Models\Menu;
 
-class Roles
+class Menus
 {
     private $roleModel;
     private $menuModel;
