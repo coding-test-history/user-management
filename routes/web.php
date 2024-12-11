@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Http\Request;
 
 // default page
 Route::get('/', function () {
@@ -38,8 +39,42 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+    'roles'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard/Show');
+
+    // dashboard
+    Route::get('/dashboard', function (Request $request) {
+        return Inertia::render('Dashboard/Show', [
+            'menu' => $request->get('menu'),
+            'phpVersion' => PHP_VERSION,
+        ]);
     })->name('dashboard');
+
+    // user management
+    Route::name('users.')->prefix('users')->group(function () {
+
+        // user list
+        Route::get('/list', function (Request $request) {
+            return Inertia::render('Dashboard/Show', [
+                'menu' => $request->get('menu'),
+                'phpVersion' => PHP_VERSION,
+            ]);
+        })->name('list');
+
+        // user role and permission
+        Route::get('/role-permission', function (Request $request) {
+            return Inertia::render('Dashboard/Show', [
+                'menu' => $request->get('menu'),
+                'phpVersion' => PHP_VERSION,
+            ]);
+        })->name('role-permission');
+
+        // user menu
+        Route::get('/menu', function (Request $request) {
+            return Inertia::render('Dashboard/Show', [
+                'menu' => $request->get('menu'),
+                'phpVersion' => PHP_VERSION,
+            ]);
+        })->name('menu');
+    });
 });

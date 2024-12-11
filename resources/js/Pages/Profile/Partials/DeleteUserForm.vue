@@ -2,9 +2,6 @@
 // section components
 import ActionSection from '@/Components/Sections/ActionSection.vue';
 
-// form components
-import DangerButton from '@/Components/Form/DangerButton.vue';
-
 // feature components
 import DeleteUserForm from '@/Components/Features/Profile/DeleteUserForm.vue';
 </script>

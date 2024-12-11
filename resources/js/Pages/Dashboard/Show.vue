@@ -16,7 +16,8 @@ defineProps(props);
 </script>
 
 <template>
-    <AppLayout :title="title">
+    <AppLayout :title="title" :menu="menu">
+        
         <!-- header -->
         <template #header>
             <Breadcrumb :title="title" />
