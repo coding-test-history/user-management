@@ -13,7 +13,7 @@ import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfile
 import SectionBorder from '@/Components/Sections/SectionBorder.vue';
 
 // card components
-import Breadcrumb from '@/Components/Cards/Breadcrumb.vue';
+import Breadcrumb from '@/Components/Utilities/Breadcrumb.vue';
 
 // models
 import { generalProps } from '@/Models/ProfileModel.js';

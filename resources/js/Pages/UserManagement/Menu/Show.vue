@@ -6,18 +6,19 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import Breadcrumb from '@/Components/Utilities/Breadcrumb.vue';
 
 // feature components
-import Content from '@/Components/Features/Dashboard/Content.vue';
+import List from '@/Components/Features/UserManagement/Menu/List.vue';
+import Create from '@/Components/Features/UserManagement/Menu/Create.vue';
 
 // models
-import { props } from '@/Models/DashboardModel.js';
+import { generalProps, createProps } from '@/Models/MenuModel.js';
 
 // props management
-defineProps(props);
+defineProps({ ...generalProps, ...createProps });
 </script>
 
 <template>
-    <AppLayout :title="title" :menu="menu">
-        
+    <AppLayout :title="title">
+
         <!-- header -->
         <template #header>
             <Breadcrumb :title="title" />
@@ -27,8 +28,12 @@ defineProps(props);
         <!-- content -->
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <Create :successDialog="successDialog" :openSuccessDialog="openSuccessDialog"
+                    :openCreateNewMenuModal="openCreateNewMenuModal" :createNewMenuModal="createNewMenuModal"
+                    :closeModalCreateNewMenu="closeModalCreateNewMenu" :form="form"
+                    :createMenuProcess="createMenuProcess" />
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                    <Content />
+                    <List />
                 </div>
             </div>
         </div>

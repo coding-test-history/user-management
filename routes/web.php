@@ -47,7 +47,7 @@ Route::middleware([
 
         // user menu
         Route::get('/menu', function (Request $request) {
-            return Inertia::render('Dashboard/Show', ['menu' => $request->get('menu')]);
+            return Inertia::render('UserManagement/Menu/Show', ['menu' => $request->get('menu')]);
         })
             ->name('menu.index')
             ->middleware('menuPermission:users.menu.index');

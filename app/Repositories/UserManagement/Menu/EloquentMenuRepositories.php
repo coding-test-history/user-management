@@ -42,6 +42,7 @@ class EloquentMenuRepositories implements MenuRepositories
     private $checkerHelpers;
     private $date;
     private $menuModel;
+    private $menuModelR1;
 
     public function __construct(
         CheckerHelpers $checkerHelpers,
@@ -56,11 +57,39 @@ class EloquentMenuRepositories implements MenuRepositories
          * initialize model
          */
         $this->menuModel = $menuModel;
+        $this->menuModelR1 = DB::table('menus as r1');
 
         /**
          * static value
          */
         $this->date = Carbon::now()->toDateString();
+    }
+
+    /**
+     * menu listing
+     */
+    public function listMenu()
+    {
+        try {
+            // process get user data
+            $data = $this->menuModelR1->select(
+                'r1.menu_name as menu_name',
+                'r2.menu_name as parent',
+                'r1.route',
+                'r1.id',
+                'r1.parent_menu_id',
+            )
+                ->leftJoin('menus as r2', 'r1.parent_menu_id', '=', 'r2.id')
+                ->orderBy('r1.id', 'asc')
+                ->paginate(10);
+            $response = $this->sendResponse(null, 200, $data);
+        } catch (CustomException $ex) {
+            $ex = json_decode($ex->getMessage());
+            $response = $this->sendResponse($ex[0], $ex[1]);
+        } catch (\Exception $e) {
+            $response = $this->sendResponse($e->getMessage(), 500);
+        }
+        return $response;
     }
 
     /**
@@ -70,7 +99,7 @@ class EloquentMenuRepositories implements MenuRepositories
     {
         try {
             // process get menu data
-            $getMenu = $this->checkerHelpers->menuChecker(['id' => $id]);
+            $getMenu = $this->checkerHelpers->menuChecker(['r1.id' => $id]);
             if (is_null($getMenu)):
                 throw new CustomException(json_encode([$this->outputMessage('not found', 'menu'), 404]));
             endif;
@@ -122,7 +151,7 @@ class EloquentMenuRepositories implements MenuRepositories
         try {
 
             // check menu
-            $checkMenu = $this->checkerHelpers->menuChecker(['id' => $id]);
+            $checkMenu = $this->checkerHelpers->menuChecker(['r1.id' => $id]);
             if (is_null($checkMenu)):
                 throw new CustomException(json_encode([$this->outputMessage('not found', 'menu'), 404]));
             endif;
@@ -155,7 +184,7 @@ class EloquentMenuRepositories implements MenuRepositories
         try {
 
             // check menu
-            $checkMenu = $this->checkerHelpers->menuChecker(['id' => $id]);
+            $checkMenu = $this->checkerHelpers->menuChecker(['r1.id' => $id]);
             if (is_null($checkMenu)):
                 throw new CustomException(json_encode([$this->outputMessage('not found', 'menu'), 404]));
             endif;
