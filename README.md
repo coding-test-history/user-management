@@ -1,128 +1,185 @@
 
 ## Tech Stack
 
-**Client:** Vue, Vite, Tailwind
+**Language:** PHP 8.3
 
-**Server:** Laravel 11 | PHP 8, MySQL | PostgreSQL, Jetstream, Inertia, Pest
+**Framework:** Laravel 11
+
+**Database:** MySQL | PostgreSQL
 ## Features
 
  - Login
- - User Registration
+ - Registrasi Pengguna
  - Logout
- - User Management including (User, Role, Dynamic Nested Menu, Permission)
- - Audit Trail including (ID user, Username, Menu Activity, Method Activity, Time Activity, Create detail layout for add and update activity)
+ - Manajemen Pengguna yang terdiri dari 
+    - User
+    - Role
+    - Menu 
+    - Permission
 ## Installation
-<!-- install composer
+clone repositories to your local machine
+```bash
+  git clone https://github.com/coding-test-history/user-management.git
+```
+install dependencies
 ```bash
   composer install
+  npm install && npm run build
 ```
-db config on env    
+run migration
 ```bash
-  DB_HOST="" 
-  DB_PORT= #3306 for mysql, 5432 for PostgreSQL
-  DB_DATABASE=""
-  DB_USERNAME=""
-  DB_PASSWORD=""
-  DB_CONNECTION= #input mysql for mysql and input pgsql for PostgreSQL
+  php artisan migrate
 ```
-input your jwt secret key
+run seeder
 ```bash
-  JWT_SECRET_KEY= 
-``` -->
+  php artisan db:seeder --class=DatabaseSeeder
+```
+
+## Run Locally
+
+run the following command
+```bash
+    composer run dev
+```
 ## Demo
 
-- Username : administrator
+- Email : user1@mail.com | user2@mail.com | user3@mail.com | user4@mail.com | user5@mail.com
 - Password : password
-
 ## API Reference
-<!-- 
-#### Login
+
+### User
+#### 1. Retrieve a list of all users.
 ```http
-  POST /api/auth/login
+  GET /api/user/list
 ```
 
-#### Get customer list
+#### 2. Retrieve details of a specific user.
 ```http
-  GET /api/customer/data
+  GET /api/user/list/{id}
+```
+| Parameter | Type     | Description. |
+| :-------- | :------- | :------------|
+| `id`      | `int`    | **Required**.|
+
+#### 3. Create a new user.
+```http
+  POST /api/user/list/post
+```
+| Request Body.   | Type     | Description  |
+| :---------------| :------- | :------------|
+| `name`          | `string` | **Required**.|
+| `email`         | `string` | **Required**.|
+| `password`      | `string` | **Required**.|
+| `role_id`       | `integer`| **Required**.|
+
+#### 4. Update an existing user.
+```http
+  PUT /api/user/list/update/{id}
+```
+| Parameter | Type     | Description. |
+| :-------- | :------- | :------------|
+| `id`      | `int`    | **Required**.|
+
+| Request Body.   | Type     | Description  |
+| :---------------| :------- | :------------|
+| `name`          | `string` | **Required**.|
+| `email`         | `string` | **Required**.|
+| `role_id`       | `integer`| **Required**.|
+
+#### 5. Delete an user.
+```http
+  DELETE /api/user/list/delete/{id}
+```
+| Parameter | Type     | Description. |
+| :-------- | :------- | :------------|
+| `id`      | `int`    | **Required**.|
+
+### Role and Permission
+#### 1. Retrieve a list of all roles and permission.
+```http
+  GET /api/user/role-permission
 ```
 
-#### Get customer detail
+#### 2. Retrieve details of a specific role and permission.
 ```http
-  GET /api/customer/get/{id}
+  GET /api/user/role-permission/{id}
+```
+| Parameter | Type     | Description. |
+| :-------- | :------- | :------------|
+| `id`      | `int`    | **Required**.|
+
+#### 3. Create a new role and permission.
+```http
+  POST /api/user/role-permission/post
+```
+| Request Body.   | Type     | Description  |
+| :---------------| :------- | :------------|
+| `role_name`     | `string` | **Required**.|
+| `menu_id[]`     | `string` | **Required** array format.|
+
+#### 4. Update an existing role and permission.
+```http
+  PUT /api/user/role-permission/update/{id}
+```
+| Parameter | Type     | Description. |
+| :-------- | :------- | :------------|
+| `id`      | `int`    | **Required**.|
+
+| Request Body.   | Type     | Description  |
+| :---------------| :------- | :------------|
+| `role_name`     | `string` | **Required**.|
+| `menu_id[]`     | `string` | **Required** array format.|
+
+#### 5. Delete an user.
+```http
+  DELETE /api/user/role-permission/delete/{id}
+```
+| Parameter | Type     | Description. |
+| :-------- | :------- | :------------|
+| `id`      | `int`    | **Required**.|
+
+### Menu
+#### 1. Retrieve a list of all menus.
+```http
+  GET /api/user/menu
 ```
 
-#### Update customer data
+#### 2. Retrieve details of a specific menus.
 ```http
-  PUT /api/customer/update/{id}
+  GET /api/user/menu/{id}
 ```
+| Parameter | Type     | Description. |
+| :-------- | :------- | :------------|
+| `id`      | `int`    | **Required**.|
 
-#### Delete customer data
+#### 3. Create a new menu.
 ```http
-  DELETE /api/customer/delete/{id}
+  POST /api/user/menu/post
 ```
+| Request Body.   | Type     | Description  |
+| :---------------| :------- | :------------|
+| `menu_name`     | `string` | **Required**.|
+| `route`         | `string` | **Required**.|
+| `parent_menu_id`| `string` | **Required**.|
 
-#### Get order list
+#### 4. Update an existing menu.
 ```http
-  GET /api/order/data
+  PUT /api/user/menu/update/{id}
 ```
+| Parameter | Type     | Description. |
+| :-------- | :------- | :------------|
+| `id`      | `int`    | **Required**.|
 
-#### Get detail order
+| Request Body.   | Type     | Description  |
+| :---------------| :------- | :------------|
+| `menu_name`     | `string` | **Required**.|
+| `route`         | `string` | **Required**.|
+| `parent_menu_id`| `string` | **Required**.|
+
+#### 5. Delete an menu.
 ```http
-  GET /api/order/get/{id}
+  DELETE /api/user/menu/delete/{id}
 ```
-
-#### Update order data
-```http
-  PUT /api/order/update/{id}
-```
-
-#### Delete order data
-```http
-  DELETE /api/order/delete/{id}
-```
-## ERD 
-#### ERD
-![erd](database/erd.png)
-
-#### DB Relation
-![db relation](database/db-relation.png)
-
-## Screenshot
-#### login page
-![login page](assets/images/ss/login.png)
-
-#### login fail
-![login fail](assets/images/ss/login%20fail.png)
-
-#### login success
-![login success](assets/images/ss/login%20success.png)
-
-#### customer page
-![customer page](assets/images/ss/customer.png)
-
-#### Add New Customer
-![Add New Customer](assets/images/ss/add%20customer.png)
-
-#### Customer Delete Confirmation
-![Customer Delete Confirmation](assets/images/ss/customer%20delete%20confirmation.png)
-
-#### Customer Delete Success
-![Customer Delete Success](assets/images/ss/customer%20delete%20success.png)
-
-#### Customer Detail
-![Customer Detail](assets/images/ss/customer%20detail.png)
-
-#### Customer Update Success
-![Customer Update Success](assets/images/ss/customer%20update%20success.png)
-
-#### Order Page
-![Order Page](assets/images/ss/order.png)
-
-#### Add New Order
-![Add New Order](assets/images/ss/add%20order.png)
-
-#### Logout Confirmation
-![Logout Confirmation](assets/images/ss/logout%20confirmation.png)
-
-#### Logout Success
-![Logout Success](assets/images/ss/logout%20success.png) -->
+| Parameter | Type     | Description. |
+| :-------- | :------- | :------------|
+| `id`      | `int`    | **Required**.|
