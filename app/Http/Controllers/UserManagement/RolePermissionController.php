@@ -17,6 +17,14 @@ class RolePermissionController extends Controller
         $this->rolePermissionRepositories = $rolePermissionRepositories;
     }
 
+    public function listRole()
+    {
+        $response = $this->rolePermissionRepositories->listRole();
+        $code = $response['code'];
+        unset($response['code']);
+        return response()->json($response, $code);
+    }
+
     public function getRolePermissionById($id)
     {
         $response = $this->rolePermissionRepositories->getRolePermissionById($id);

@@ -64,13 +64,39 @@ class EloquentUserListRepositories implements UserListRepositories
     }
 
     /**
+     * get list user
+     */
+    public function listUser()
+    {
+        try {
+            // process get user list data
+            $getUser = $this->userModel->select('users.id', 'name', 'email', 'role_name', 'role_id')
+                ->join('roles', 'users.role_id', '=', 'roles.id')
+                ->paginate(10);
+            if (is_null($getUser)):
+                throw new CustomException(json_encode([$this->outputMessage('not found', 'user'), 404]));
+            endif;
+
+            // response data
+            $data = $getUser;
+            $response = $this->sendResponse(null, 200, $data);
+        } catch (CustomException $ex) {
+            $ex = json_decode($ex->getMessage());
+            $response = $this->sendResponse($ex[0], $ex[1]);
+        } catch (\Exception $e) {
+            $response = $this->sendResponse($e->getMessage(), 500);
+        }
+        return $response;
+    }
+
+    /**
      * get user list by id
      */
     public function getUserListById($id)
     {
         try {
             // process get user list data
-            $getUser = $this->checkerHelpers->userChecker(['id' => $id]);
+            $getUser = $this->checkerHelpers->userChecker(['users.id' => $id]);
             if (is_null($getUser)):
                 throw new CustomException(json_encode([$this->outputMessage('not found', 'user'), 404]));
             endif;
@@ -122,7 +148,7 @@ class EloquentUserListRepositories implements UserListRepositories
         try {
 
             // check user
-            $checkUser = $this->checkerHelpers->userChecker(['id' => $id]);
+            $checkUser = $this->checkerHelpers->userChecker(['users.id' => $id]);
             if (is_null($checkUser)):
                 throw new CustomException(json_encode([$this->outputMessage('not found', 'user'), 404]));
             endif;
@@ -155,7 +181,7 @@ class EloquentUserListRepositories implements UserListRepositories
         try {
 
             // check user
-            $checkUser = $this->checkerHelpers->userChecker(['id' => $id]);
+            $checkUser = $this->checkerHelpers->userChecker(['users.id' => $id]);
             if (is_null($checkUser)):
                 throw new CustomException(json_encode([$this->outputMessage('not found', 'user'), 404]));
             endif;

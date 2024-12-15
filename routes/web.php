@@ -26,14 +26,17 @@ Route::middleware([
 ])->group(function () {
 
     // dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', function (Request $request) {
+        return Inertia::render('Dashboard/Show', ['menu' => $request->get('menu')]);
+    })
+        ->name('dashboard');
 
     // user management
-    Route::name('users.')->prefix('users')->group(function () {
+    Route::middleware('menus')->name('users.')->prefix('users')->group(function () {
 
         // user list
         Route::get('/list', function (Request $request) {
-            return Inertia::render('Dashboard/Show', ['menu' => $request->get('menu')]);
+            return Inertia::render('UserManagement/List/Show', ['menu' => $request->get('menu')]);
         })
             ->name('list.index')
             ->middleware('menuPermission:users.list.index');
