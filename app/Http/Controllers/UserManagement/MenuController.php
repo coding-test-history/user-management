@@ -17,6 +17,14 @@ class MenuController extends Controller
         $this->menuRepositories = $menuRepositories;
     }
 
+    public function listMenu()
+    {
+        $response = $this->menuRepositories->listMenu();
+        $code = $response['code'];
+        unset($response['code']);
+        return response()->json($response, $code);
+    }
+
     public function getMenuById($id)
     {
         $response = $this->menuRepositories->getMenuById($id);

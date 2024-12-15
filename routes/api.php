@@ -10,7 +10,7 @@ Route::middleware([
     // 'auth:sanctum',
 ])->group(function () {
     // user management
-    Route::name('users.')->prefix('users')->group(function () {
+    Route::name('user.')->prefix('user')->group(function () {
 
         // user list
         Route::name('list.')->prefix('list')->group(function () {
@@ -30,6 +30,7 @@ Route::middleware([
 
         // user menu
         Route::name('menu.')->prefix('menu')->group(function () {
+            Route::get('/', [MenuController::class, 'listMenu'])->name('list');
             Route::get('/{id}', [MenuController::class, 'getMenuById'])->name('get');
             Route::post('/store', [MenuController::class, 'storeMenu'])->name('store');
             Route::put('/update/{id}', [MenuController::class, 'updateMenu'])->name('update');
