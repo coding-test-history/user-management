@@ -14,6 +14,7 @@ Route::middleware([
 
         // user list
         Route::name('list.')->prefix('list')->group(function () {
+            Route::get('/', [UserListController::class, 'listUser'])->name('list');
             Route::get('/{id}', [UserListController::class, 'getUserListById'])->name('get');
             Route::post('/store', [UserListController::class, 'storeUserList'])->name('store');
             Route::put('/update/{id}', [UserListController::class, 'updateUserList'])->name('update');
@@ -22,6 +23,7 @@ Route::middleware([
 
         // user role and permission
         Route::name('role-permission.')->prefix('role-permission')->group(function () {
+            Route::get('/', [RolePermissionController::class, 'listRole'])->name('list');
             Route::get('/{id}', [RolePermissionController::class, 'getRolePermissionById'])->name('get');
             Route::post('/store', [RolePermissionController::class, 'storeRolePermission'])->name('store');
             Route::put('/update/{id}', [RolePermissionController::class, 'updateRolePermission'])->name('update');

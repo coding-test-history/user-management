@@ -2,7 +2,7 @@
 export const generalProps = {
     title: {
         type: String,
-        default: "User",
+        default: "Menu",
     },
 };
 

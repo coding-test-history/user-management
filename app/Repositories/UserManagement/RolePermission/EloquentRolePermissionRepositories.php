@@ -64,6 +64,30 @@ class EloquentRolePermissionRepositories implements RolePermissionRepositories
     }
 
     /**
+     * get list roles
+     */
+    public function listRole()
+    {
+        try {
+            // process get role data
+            $getRole = $this->roleModel->paginate(10);
+            if (is_null($getRole)):
+                throw new CustomException(json_encode([$this->outputMessage('not found', 'role'), 404]));
+            endif;
+
+            // response data
+            $data = $getRole;
+            $response = $this->sendResponse(null, 200, $data);
+        } catch (CustomException $ex) {
+            $ex = json_decode($ex->getMessage());
+            $response = $this->sendResponse($ex[0], $ex[1]);
+        } catch (\Exception $e) {
+            $response = $this->sendResponse($e->getMessage(), 500);
+        }
+        return $response;
+    }
+
+    /**
      * get role permission by id
      */
     public function getRolePermissionById($id)

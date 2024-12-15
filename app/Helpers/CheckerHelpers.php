@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Helpers;
+
 use Illuminate\Support\Facades\DB;
 
 /**
  * import models
  */
+
 use App\Models\Role;
 use App\Models\User;
 
@@ -28,14 +30,19 @@ class CheckerHelpers
     }
 
     // role checker
-    public function roleChecker($data){
+    public function roleChecker($data)
+    {
         $roleChecker = Role::where($data)->first();
         return $roleChecker;
     }
 
     // user checker
-    public function userChecker($data){
-        $userChecker = User::where($data)->first();
+    public function userChecker($data)
+    {
+        $userChecker = User::select('users.id', 'name', 'email', 'role_name', 'role_id')
+            ->join('roles', 'users.role_id', '=', 'roles.id')
+            ->where($data)
+            ->first();
         return $userChecker;
     }
 }

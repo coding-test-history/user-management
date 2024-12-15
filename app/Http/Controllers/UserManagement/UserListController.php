@@ -17,6 +17,14 @@ class UserListController extends Controller
         $this->userListRepositories = $userListRepositories;
     }
 
+    public function listUser()
+    {
+        $response = $this->userListRepositories->listUser();
+        $code = $response['code'];
+        unset($response['code']);
+        return response()->json($response, $code);
+    }
+
     public function getUserListById($id)
     {
         $response = $this->userListRepositories->getUserListById($id);
