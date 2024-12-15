@@ -5,7 +5,7 @@ import { useForm } from "@inertiajs/vue3";
 import Swal from "sweetalert2";
 
 export default function useMenu() {
-    // State untuk menyimpan data pengguna
+    // State untuk menyimpan data menu
     const menus = ref([]);
     const pagination = ref({
         current_page: 1,

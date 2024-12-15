@@ -26,10 +26,7 @@ Route::middleware([
 ])->group(function () {
 
     // dashboard
-    Route::get('/dashboard', function (Request $request) {
-        return Inertia::render('Dashboard/Show', ['menu' => $request->get('menu')]);
-    })
-        ->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // user management
     Route::middleware('menus')->name('users.')->prefix('users')->group(function () {
@@ -43,7 +40,7 @@ Route::middleware([
 
         // user role and permission
         Route::get('/role-permission', function (Request $request) {
-            return Inertia::render('Dashboard/Show', ['menu' => $request->get('menu')]);
+            return Inertia::render('UserManagement/Role/Show', ['menu' => $request->get('menu')]);
         })
             ->name('role-permission.index')
             ->middleware('menuPermission:users.role-permission.index');

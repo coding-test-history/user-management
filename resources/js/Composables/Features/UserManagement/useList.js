@@ -1,5 +1,5 @@
 // vue components
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useForm } from "@inertiajs/vue3";
 import Swal from "sweetalert2";
